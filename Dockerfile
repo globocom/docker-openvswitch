@@ -7,6 +7,8 @@ RUN apk --update add openssh \
                      openvswitch
 
 
+# ////////////// SSH Section ////////////// #
+
 # Creates ssh keys to run sshd service
 RUN /usr/bin/ssh-keygen -t rsa -b 4096 -N '' -f /etc/ssh/ssh_host_rsa_key
 
@@ -17,6 +19,8 @@ RUN sed -i 's/#PermitEmptyPasswords.*$/PermitEmptyPasswords yes/1' /etc/ssh/sshd
 # Exposes SSH port
 EXPOSE 22
 
+
+# ////////////// Open vSwitch Section ////////////// #
 
 # Create database and pid file directory
 RUN /usr/bin/ovsdb-tool create /etc/openvswitch/conf.db
